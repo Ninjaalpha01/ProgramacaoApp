@@ -5,5 +5,5 @@
  * @author ninja
  *
  */
-module teste {
+module aula01Eclipse {
 }

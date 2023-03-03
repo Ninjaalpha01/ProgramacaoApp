@@ -1,17 +1,19 @@
 package aula01;
 
-public class carro {
-    string modelo;
-    string marca;
-    string placa;
-    string cor;
+public class Carro {
+    String modelo;
+    String marca;
+    String placa;
+    String cor;
     int ano;
 
-    // Carro(String modelo, String marca, String placa, String cor, int ano) {
-
-
-    //     System.out.println("Construtor padrão");
-    // }
+    Carro(String modelo, String marca, String placa, String cor, int ano) {
+        this.modelo = modelo;
+        this.marca = marca;
+        this.placa = placa;
+        this.cor = cor;
+        this.ano = ano;
+    }
 
     public void acelerar() {
         System.out.println("Acelerando...");
@@ -22,7 +24,7 @@ public class carro {
     }
 
     public void buzinar() {
-        System.out.println("Buzinando...");
+        System.out.print("\007");
     }
 
     public void ligar() {
@@ -33,3 +35,4 @@ public class carro {
         System.out.println("Desligando...");
     }
 }
+

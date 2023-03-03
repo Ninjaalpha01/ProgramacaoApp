@@ -1,6 +1,4 @@
-
-
-import java.util.Scanner;
+package aula01;
 
 public class CarroTeste {
     public static void main(String[] args) {
@@ -12,5 +10,8 @@ public class CarroTeste {
         System.out.println("Carro 1: " + carro1.modelo);
         System.out.println("Carro 2: " + carro2.modelo);
         System.out.println("Carro 3: " + carro3.modelo);
+
+        carro1.buzinar();
     }
+
 }
