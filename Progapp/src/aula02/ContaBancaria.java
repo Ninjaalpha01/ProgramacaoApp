@@ -1,8 +1,8 @@
 package aula02;
 
 public class ContaBancaria {
-    String nome;
-    double saldo;
+    private String nome;
+    private double saldo;
 
     public ContaBancaria(String nome){
         this.nome = nome;
