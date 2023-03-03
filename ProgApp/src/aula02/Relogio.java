@@ -15,8 +15,20 @@ public class Relogio {
     private void restrictTime(int time, boolean isMinute) {
         if (isMinute)
         {
-            
+            if(time < 0)
+                this.minutos = 0;
+            else if (time > 59)
+                this.minutos = 59;
+            else 
+                this.minutos = time;
+            return;
         }
+        if (time < 0)
+            this.horas = 0;
+        else if (time > 23)
+            this.horas = 23;
+        else
+            this.horas = time;
     }
 
     public String getMarca() {
