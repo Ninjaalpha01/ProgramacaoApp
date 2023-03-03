@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author ninja
+ *
+ */
+module teste {
+}
