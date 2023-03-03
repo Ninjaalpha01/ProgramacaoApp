@@ -5,30 +5,26 @@ public class Relogio {
     private int horas;
     private int minutos;
 
-    public Relogio(String marca, int horas, int minutos){
+    public Relogio(String marca, int horas, int minutos) {
         this.marca = marca;
-        restrictTime(horas, false);
-        restrictTime(minutos, true);
+        this.horas = restrictTime(horas, false);
+        this.minutos = restrictTime(minutos, true);
         System.out.println("Relogio setado para " + this.horas + ":" + this.minutos);
     }
 
-    private void restrictTime(int time, boolean isMinute) {
-        if (isMinute)
-        {
-            if(time < 0)
-                this.minutos = 0;
-            else if (time > 59)
-                this.minutos = 59;
-            else 
-                this.minutos = time;
-            return;
-        }
+    private int restrictTime(int time, boolean isMinute) { // melhorar isso
         if (time < 0)
-            this.horas = 0;
-        else if (time > 23)
-            this.horas = 23;
-        else
-            this.horas = time;
+            return 0;
+
+        if (isMinute) {
+            if (time > 59)
+                return 59;
+            return time;
+        }
+
+        if (time > 23)
+            return 23;
+        return time;
     }
 
     public String getMarca() {
@@ -44,22 +40,18 @@ public class Relogio {
     }
 
     public void setHoras(int horas) {
-        if(horas > 23 || horas < 0)
-        {
-            System.out.println("hora invalida\n");
-            return;
-        }
-        this.horas = horas;
-        System.out.println("hora alterada para " + this.horas + ":" + this.minutos);
+        if (horas > 23 || horas < 0)
+            System.out.println("hora invalida");
+
+        this.horas = restrictTime(horas, false);
+        System.out.println("hora alterada para " + this.horas + ":" + this.minutos + "\n");
     }
 
     public void setMinutos(int minutos) {
-        if(minutos > 59 || minutos < 0)
-        {
-            System.out.println("minuto invalido\n");
-            return;
-        }
-        this.minutos = minutos;
-        System.out.println("hora alterada para " + this.horas + ":" + this.minutos);
+        if (minutos > 59 || minutos < 0)
+            System.out.println("minuto invalido");
+
+        this.minutos = restrictTime(minutos, true);
+        System.out.println("hora alterada para " + this.horas + ":" + this.minutos + "\n");
     }
 }
