@@ -9,4 +9,9 @@ public class Cavalo extends Mamifero {
     public void emitirSom() {
         System.out.println("Relinchando!");
     }
+
+    @Override
+    public String toString(){
+        return "Cavalo:\n\tNome: " + super.nome + "\n\tRaca: " + super.raca;
+    }
 }

@@ -9,5 +9,6 @@ public abstract class Mamifero {
         this.raca = raca;
     }
 
-    public void emitirSom() {};
+    public abstract void emitirSom();
+    public abstract String toString();
 }

@@ -12,4 +12,9 @@ public class Gato extends Mamifero {
         else
             System.out.println("Miau!");
     }
+
+    @Override
+    public String toString(){
+        return "Gato:\n\tNome: " + super.nome + "\n\tRaca: " + super.raca;
+    }
 }
