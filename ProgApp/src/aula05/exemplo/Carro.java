@@ -11,4 +11,8 @@ public class Carro extends Veiculo{
     public void trocarPneus(){
         System.out.println("Trocando pneus");
     }
+
+    public int getNumPortas() {
+        return numPortas;
+    }
 }

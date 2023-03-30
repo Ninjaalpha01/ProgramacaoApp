@@ -11,4 +11,8 @@ public class Aviao extends Veiculo {
     public void embarcarPassageiros(){
         System.out.println("Embarcando passageiros");
     }
+
+    public int getAlturaVoo(){
+        return alturaVoo;
+    }
 }

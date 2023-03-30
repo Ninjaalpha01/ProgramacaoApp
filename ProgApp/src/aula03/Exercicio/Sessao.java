@@ -1,16 +1,13 @@
 package aula03.Exercicio;
 
-import java.util.Date;
-import java.util.Timer;
-
 public class Sessao implements TemplateCinema {
-    private Date data;
-    private Timer hora;
+    private String data;
+    private String hora;
     private Sala sala;
     private Filme filme;
     private Ingresso[] ingresso;
 
-    public Sessao(Date data, Timer hora, Sala sala, Filme filme, Ingresso[] ingresso) {
+    public Sessao(String data, String hora, Sala sala, Filme filme, Ingresso[] ingresso) {
         this.data = data;
         this.hora = hora;
         this.sala = sala;
@@ -19,26 +16,40 @@ public class Sessao implements TemplateCinema {
     }
 
     @Override
-    public void cadastrar() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void editar() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public void buscar() {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void remover() {
-        // TODO Auto-generated method stub
+    }
 
+    public String getData() {
+        return data;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public Sala getSala() {
+        return sala;
+    }
+
+    public Filme getFilme() {
+        return filme;
+    }
+
+    public Ingresso[] getIngresso() {
+        return ingresso;
+    }
+
+    @Override
+    public void cadastrar() {
+        throw new UnsupportedOperationException("Unimplemented method 'cadastrar'");
+    }
+
+    @Override
+    public void editar() {
+        throw new UnsupportedOperationException("Unimplemented method 'editar'");
     }
 }

@@ -8,4 +8,12 @@ public class Sala {
         this.numeroSala = numeroSala;
         this.capacidade = capacidade;
     }
+
+    public int getNumeroSala() {
+        return numeroSala;
+    }
+
+    public int getCapacidade() {
+        return capacidade;
+    }
 }

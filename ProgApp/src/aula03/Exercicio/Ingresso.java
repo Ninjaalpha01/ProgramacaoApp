@@ -23,4 +23,8 @@ public class Ingresso {
     public double getValor() {
         return valor;
     }
+
+    public int getIdentificacao() {
+        return identificacao;
+    }
 }

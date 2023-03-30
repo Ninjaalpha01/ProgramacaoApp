@@ -1,7 +1,6 @@
 package aula03.Exercicio;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Filme {
     private String titulo;

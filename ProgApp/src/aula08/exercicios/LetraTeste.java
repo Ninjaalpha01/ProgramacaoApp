@@ -18,5 +18,7 @@ public class LetraTeste {
         System.out.println("toLowerCase: " + letra.toLowerCase(str));
 
         System.out.println("toUpperCase: " + letra.toUpperCase(str2));
+
+        input.close();
     }
 }
