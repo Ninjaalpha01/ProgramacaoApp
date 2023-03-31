@@ -10,4 +10,12 @@ public class Socio extends Cliente {
         this.cpf = cpf;
         this.dependente = dependente;
     }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public Dependente getDependente() {
+        return dependente;
+    }
 }

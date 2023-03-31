@@ -1,5 +1,7 @@
 package lista02.exercicio01;
 
+import lista02.exercicio01.exceptions.ValorNaoPositivoException;
+
 public class Conta {
     private int numeroConta;
     private double saldo;
@@ -11,7 +13,9 @@ public class Conta {
         this.titular = titular;
     }
 
-    public void sacar(double valor) {
+    public void sacar(double valor) throws ValorNaoPositivoException {
+        if (valor <= 0)
+            throw new ValorNaoPositivoException();
         if (valor > this.saldo) {
             System.out.println("Saldo insuficiente");
         } else {
@@ -21,7 +25,9 @@ public class Conta {
         }
     }
 
-    public void depositar(double valor) {
+    public void depositar(double valor) throws ValorNaoPositivoException {
+        if (valor <= 0)
+            throw new ValorNaoPositivoException();
         this.saldo += valor;
         System.out.println("Depósito realizado com sucesso\nConta: " + this.numeroConta + " / Titular: "
                 + this.titular.getNome());

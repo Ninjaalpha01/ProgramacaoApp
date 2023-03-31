@@ -16,4 +16,28 @@ public class Endereco {
         this.cidade = cidade;
         this.estado = estado;
     }
+
+    public String getRua() {
+        return rua;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
 }

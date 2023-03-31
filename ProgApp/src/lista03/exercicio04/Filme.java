@@ -1,5 +1,8 @@
 package lista03.exercicio04;
 
+import lista03.exercicio04.exceptions.DiaInvalidoException;
+import lista03.exercicio04.exceptions.PrecoDivergenteException;
+
 public class Filme {
     private String titulo;
     private int duracao;
@@ -18,25 +21,23 @@ public class Filme {
         this.disponivel = true;
     }
 
-    public void locarFilme(Cliente cliente, int diaLocacao, double preco) {
-        if (diaLocacao > 0 && diaLocacao <= 31) {
-            if (this.disponivel) {
-                if (this.valor == preco) {
-                    this.cliente = cliente;
-                    this.diaLocacao = diaLocacao;
-                    this.diaPrevisto = diaLocacao + 3;
-                    this.disponivel = false;
-                    System.out.println("Filme locado com sucesso.");
-                    return;
-                }
-                System.out.println("Valor do filme não confere.");
-                return;
-            }
+    public void locarFilme(Cliente cliente, int diaLocacao, double preco) throws DiaInvalidoException, PrecoDivergenteException  {
+        if (diaLocacao <= 0 || diaLocacao > 31) {
+            throw new DiaInvalidoException();
+        } 
+        if (this.disponivel) {
+            if (this.valor != preco)
+                throw new PrecoDivergenteException();
+            this.cliente = cliente;
+            this.diaLocacao = diaLocacao;
+            this.diaPrevisto = diaLocacao + 3;
+            this.disponivel = false;
+            System.out.println(this.titulo + " locado com sucesso.");
+        } else
             System.out.println("Filme indisponível.");
-        }
     }
 
-    public void devolverFilme(int diaDevolucao) {
+    public void devolverFilme(int diaDevolucao) throws DiaInvalidoException {
         if (!this.disponivel) {
             if (diaDevolucao > 0 && diaDevolucao <= 31) {
                 this.diaDevolucao = diaDevolucao;
@@ -49,8 +50,7 @@ public class Filme {
                     System.out.println("Filme devolvido com sucesso.");
                 return;
             }
-            System.out.println("Dia inválido.");
-            return;
+            throw new DiaInvalidoException();
         }
         System.out.println("Filme já devolvido.");
     }
@@ -65,5 +65,9 @@ public class Filme {
         System.out.println("Valor do filme: R$" + String.format("%.2f", this.valor));
         System.out.println("Valor da multa: R$" + String.format("%.2f", this.valorMulta));
         System.out.println("Valor Total: R$" + String.format("%.2f", this.valor + this.valorMulta));
+    }
+
+    public int getDuracao() {
+        return duracao;
     }
 }
