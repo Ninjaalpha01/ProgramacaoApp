@@ -1,7 +1,5 @@
 package hillclimbing;
 
-import java.io.ObjectInputStream.GetField;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class HillClimbing {
@@ -11,20 +9,32 @@ public class HillClimbing {
 
     public HillClimbing(ArrayList<Integer> rainhas) {
         this.rainhas = rainhas;
-        ArrayList<Integer> melhorSolucao = new ArrayList<Integer>();
-        int melhorPontuacao = 50;
+        this.melhorSolucao = rainhas;
+        this.melhorPontuacao = 50;
     }
 
     private ArrayList<ArrayList<Integer>> encontrarVizinhos(ArrayList<Integer> solucao) {
         ArrayList<ArrayList<Integer>> vizinhos = new ArrayList<ArrayList<Integer>>();
 
-        for (int rainha : solucao) {
-            ArrayList<Integer> vetor = solucao;
-            for (int i = 0; i < 8; i++)
-                if (rainha != i) {
-                    vetor.set(rainha, i);
-                    vizinhos.add(vetor);
-                }
+        for (Integer peca : solucao) {
+            ArrayList<Integer> vizinhosPeca = vizinhoPeca(peca);
+
+            for (Integer vizinho : vizinhosPeca) {
+                ArrayList<Integer> solucaoVizinho = new ArrayList<Integer>(solucao);
+                solucaoVizinho.set(solucao.indexOf(peca), vizinho);
+                vizinhos.add(solucaoVizinho);
+            }
+        }
+
+        return vizinhos;
+    }
+
+    private ArrayList<Integer> vizinhoPeca(Integer peca) {
+        ArrayList<Integer> vizinhos = new ArrayList<Integer>();
+
+        for (int i = 0; i < 8; i++) {
+            if (i != peca)
+                vizinhos.add(i);
         }
 
         return vizinhos;
@@ -32,11 +42,15 @@ public class HillClimbing {
 
     private int calcularPontuacao(ArrayList<Integer> solucao) {
         int pontuacao = 0;
-        for (int linha : solucao)
-            for (int coluna : solucao) {
-                if (linha == coluna)
+
+        for (int i = 0; i < solucao.size(); i++) {
+            for (int j = i + 1; j < solucao.size(); j++) {
+                if (solucao.get(i) == solucao.get(j))
+                    pontuacao++;
+                else if (Math.abs(solucao.get(i) - solucao.get(j)) == Math.abs(i - j))
                     pontuacao++;
             }
+        }
 
         return pontuacao;
     }
@@ -45,24 +59,31 @@ public class HillClimbing {
         ArrayList<Integer> solucaoAtual = this.rainhas;
         int pontuacaoAtual = calcularPontuacao(solucaoAtual);
 
+        System.out.println("Solucoes:");
+
         while (true) {
             ArrayList<ArrayList<Integer>> vizinhos = encontrarVizinhos(solucaoAtual);
 
             for (ArrayList<Integer> solucao : vizinhos) {
                 int pontuacao = calcularPontuacao(solucao);
 
-                if (pontuacao > melhorPontuacao) {
-                    melhorSolucao = solucao;
+                System.out.println("\t" + solucao + " - " + pontuacao);
+
+                if (pontuacao < melhorPontuacao) {
+                    this.melhorSolucao = solucao;
                     melhorPontuacao = pontuacao;
                 }
             }
 
-            if (melhorPontuacao > pontuacaoAtual) {
-                solucaoAtual = melhorSolucao;
+            if (melhorPontuacao < pontuacaoAtual) {
+                solucaoAtual = this.melhorSolucao;
                 pontuacaoAtual = melhorPontuacao;
             } else
                 break;
         }
+
+        System.out.println("\nMelhor solução: " + this.melhorSolucao);
+        System.out.println("Pontuação: " + this.melhorPontuacao);
     }
 
     public ArrayList<Integer> getMelhorSolucao() {

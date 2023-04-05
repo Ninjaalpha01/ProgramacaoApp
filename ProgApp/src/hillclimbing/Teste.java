@@ -14,9 +14,9 @@ public class Teste {
         rainhas.add(6);
         rainhas.add(1);
 
+        System.out.println("Solucao de entrada: " + rainhas + "\n");
+
         HillClimbing alg = new HillClimbing(rainhas);
         alg.calcularHillClimbing();
-
-        alg.get
     }
 }
