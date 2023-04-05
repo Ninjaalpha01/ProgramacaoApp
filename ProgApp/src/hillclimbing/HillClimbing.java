@@ -16,12 +16,11 @@ public class HillClimbing {
     private ArrayList<ArrayList<Integer>> encontrarVizinhos(ArrayList<Integer> solucao) {
         ArrayList<ArrayList<Integer>> vizinhos = new ArrayList<ArrayList<Integer>>();
 
-        for (Integer peca : solucao) {
-            ArrayList<Integer> vizinhosPeca = vizinhoPeca(peca);
-
+        for (int peca = 0; peca < 8; peca++) {
+            ArrayList<Integer> vizinhosPeca = vizinhoPeca(solucao.indexOf(peca));
             for (Integer vizinho : vizinhosPeca) {
                 ArrayList<Integer> solucaoVizinho = new ArrayList<Integer>(solucao);
-                solucaoVizinho.set(solucao.indexOf(peca), vizinho);
+                solucaoVizinho.set(peca, vizinho);
                 vizinhos.add(solucaoVizinho);
             }
         }
@@ -82,8 +81,8 @@ public class HillClimbing {
                 break;
         }
 
-        System.out.println("\nMelhor solução: " + this.melhorSolucao);
-        System.out.println("Pontuação: " + this.melhorPontuacao);
+        System.out.println("\nMelhor Solução: " + this.melhorSolucao);
+        System.out.println("Melhor Pontuação: " + this.melhorPontuacao);
     }
 
     public ArrayList<Integer> getMelhorSolucao() {
